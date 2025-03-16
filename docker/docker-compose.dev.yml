@@ -1,0 +1,4 @@
+services:
+  file-receiver:
+    image: file-receiver-dev:latest
+    restart: on-failure

@@ -1,0 +1,23 @@
+services:
+  file-receiver:
+    image: file-receiver:latest
+    container_name: file-receiver
+    command: /scripts/entrypoint.sh
+    env_file: ../.env
+    restart: always
+    networks:
+      - tvorcha-network
+    ports:
+      - ${PORT}:8000
+    volumes:
+      - ../src:/src/
+      - ../scripts:/scripts/
+      - tvorcha-efs:/mnt/efs
+
+networks:
+  tvorcha-network:
+    external: true
+
+volumes:
+  tvorcha-efs:
+    external: true
